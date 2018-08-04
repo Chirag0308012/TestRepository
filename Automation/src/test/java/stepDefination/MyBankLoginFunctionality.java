@@ -28,32 +28,51 @@ public class MyBankLoginFunctionality {
 	}
 
 	@Given("^entering valid  <username> and invalid <password>$")
-	public void entering_valid_username_and_invalid_password(DataTable arg1){
+	public void entering_valid_username_and_invalid_password(DataTable arg1) throws InterruptedException{
 	   
+		Thread.sleep(3000);
 		//entering valid username and invalid password
+		driver.findElement(By.xpath("/html//input[@id='login']")).click();
+		driver.findElement(By.xpath("/html//input[@id='login']")).clear();
 		driver.findElement(By.xpath("/html//input[@id='login']")).sendKeys("RyallM2908");
+		driver.findElement(By.xpath("/html//input[@id='password']")).click();
+		driver.findElement(By.xpath("/html//input[@id='password']")).clear();
 		driver.findElement(By.xpath("/html//input[@id='password']")).sendKeys("Password11");
 		
-		//click on login button
-		driver.findElement(By.xpath("/html/body//form[@action='/login/']//button[@value='Login']")).click();
 		
 	}
 
 	@When("^I click login button$")
-	public void i_click_login_button() throws Throwable {
-		
+	public void i_click_login_button() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("/html/body//form[@action='/login/']//button[@value='Login']")).click();
 		
 	    	}
 
 	@Then("^Login should not be successful$")
-	public void login_should_not_be_successful() throws Throwable {
-	   
+	public void login_should_not_be_successful() throws InterruptedException {
+		Thread.sleep(5000);
+	   driver.quit();
+	}
+	@Given("^entering valid  <username> and valid <password>$")
+	public void entering_valid_username_and_valid_password(DataTable arg1) throws InterruptedException {
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("/html//input[@id='login']")).click();
+		driver.findElement(By.xpath("/html//input[@id='login']")).clear();
+		driver.findElement(By.xpath("/html//input[@id='login']")).sendKeys("RyallM2908");
+		driver.findElement(By.xpath("/html//input[@id='password']")).click();
+		driver.findElement(By.xpath("/html//input[@id='password']")).clear();
+		driver.findElement(By.xpath("/html//input[@id='password']")).sendKeys("Password1"); 
+	}
+
+	@Then("^Login should be successful$")
+	public void login_should_be_successful() throws InterruptedException {
+	    Thread.sleep(5000);
+		driver.quit();
 	}
 
 
 	
 	
 	
-	
-
 }
